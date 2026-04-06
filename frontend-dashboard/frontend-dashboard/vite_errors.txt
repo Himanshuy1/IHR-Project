@@ -1,0 +1,125 @@
+﻿
+> frontend-dashboard@0.0.0 build
+> vite build
+
+[36mvite v8.0.3 [32mbuilding client environment for production...[36m[39m
+[2K
+transforming...Γ£ô 2348 modules transformed.
+rendering chunks...
+node.exe : [31mΓ£ù[39m 
+Build failed in 1.45s
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" "C:
+\Users\Lenovo\AppData\Roam
+ing ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (  
+  [31mΓ£ù[39m Build fa   
+ iled in 1.45s:String)    
+ [], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+[31merror during build:
+[31mBuild failed with 1 
+error:
+
+[31m[MISSING_EXPORT] 
+Error:[0m "cn" is not 
+exported by "src/component
+s/common/Card.jsx".
+   [38;5;246mΓò¡[0m[38;
+5;246mΓöÇ[0m[38;5;246m[
+[0m src/components/common/
+Badge.jsx:2:10 
+[38;5;246m][0m
+   [38;5;246mΓöé[0m
+ [38;5;246m2 Γöé[0m [38
+;5;249mi[0m[38;5;249mm[
+0m[38;5;249mp[0m[38;5;2
+49mo[0m[38;5;249mr[0m[
+38;5;249mt[0m[38;5;249m 
+[0m[38;5;249m{[0m[38;5
+;249m [0mcn[38;5;249m [
+0m[38;5;249m}[0m[38;5;2
+49m [0m[38;5;249mf[0m[
+38;5;249mr[0m[38;5;249mo
+[0m[38;5;249mm[0m[38;5
+;249m [0m[38;5;249m"[0m
+[38;5;249m.[0m[38;5;249
+m/[0m[38;5;249mC[0m[38
+;5;249ma[0m[38;5;249mr[
+0m[38;5;249md[0m[38;5;2
+49m"[0m[38;5;249m;[0m
+ [38;5;240m  Γöé[0m     
+     ΓöÇΓö¼  
+ [38;5;240m  Γöé[0m     
+      Γò░ΓöÇΓöÇ Missing 
+export
+[38;5;246mΓöÇΓöÇΓöÇΓò»[0
+m
+[31m
+    at aggregateBindingErr
+orsIntoJsError (file:///D:
+/Desktop/Web%20Development
+/IHR%20Project/SecureShiel
+dAI/frontend-dashboard/fro
+ntend-dashboard/node_modul
+es/rolldown/dist/shared/er
+ror-BLhcSyeg.mjs:48:18)
+    at 
+unwrapBindingResult (file:
+///D:/Desktop/Web%20Develo
+pment/IHR%20Project/Secure
+ShieldAI/frontend-dashboar
+d/frontend-dashboard/node_
+modules/rolldown/dist/shar
+ed/error-BLhcSyeg.mjs:18:1
+28)
+    at #build (file:///D:/
+Desktop/Web%20Development/
+IHR%20Project/SecureShield
+AI/frontend-dashboard/fron
+tend-dashboard/node_module
+s/rolldown/dist/shared/rol
+ldown-build-CPrIX9V6.mjs:3
+313:34)
+    at async 
+buildEnvironment (file:///
+D:/Desktop/Web%20Developme
+nt/IHR%20Project/SecureShi
+eldAI/frontend-dashboard/f
+rontend-dashboard/node_mod
+ules/vite/dist/node/chunks
+/node.js:32849:64)
+    at async Object.build 
+(file:///D:/Desktop/Web%20
+Development/IHR%20Project/
+SecureShieldAI/frontend-da
+shboard/frontend-dashboard
+/node_modules/vite/dist/no
+de/chunks/node.js:33271:19
+)
+    at async 
+Object.buildApp (file:///D
+:/Desktop/Web%20Developmen
+t/IHR%20Project/SecureShie
+ldAI/frontend-dashboard/fr
+ontend-dashboard/node_modu
+les/vite/dist/node/chunks/
+node.js:33268:153)
+    at async 
+CAC.<anonymous> (file:///D
+:/Desktop/Web%20Developmen
+t/IHR%20Project/SecureShie
+ldAI/frontend-dashboard/fr
+ontend-dashboard/node_modu
+les/vite/dist/node/cli.js:
+778:3) {
+  errors: [Getter/Setter]
+}[39m

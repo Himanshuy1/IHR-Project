@@ -5,12 +5,11 @@ import { fetchLogs } from '../services/api';
 const Logs = () => {
   const [logs, setLogs] = useState([]);
 
-  const loadData = async () => {
-    const l = await fetchLogs();
-    setLogs(l);
-  };
-
   useEffect(() => {
+    const loadData = async () => {
+      const l = await fetchLogs();
+      setLogs(l);
+    };
     loadData();
     const interval = setInterval(loadData, 5000);
     return () => clearInterval(interval);
