@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  honeypot-backend:
+    build: ./backend
+    container_name: securesshield-honeypot
+    restart: always
+    ports:
+      # Map standard public ports safely to the internal trap ports
+      - "80:8000"     # HTTP Trap
+      - "443:443"    # HTTPS Trap
+      - "22:2222"     # SSH Trap
+      - "21:2121"     # FTP Trap
+    volumes:
+      - ./backend/database:/app/database # Persist the SQLite DB logs
+    env_file:
+      - ./backend/.env

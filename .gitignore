@@ -1,0 +1,123 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env
+.venv
+venv/
+ENV/
+
+# Virtual environment
+*.env/
+*.venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Database
+*.sqlite3
+*.db
+*.sql
+backend/database/*.db
+backend/database/*.sqlite3
+backend/database/*.sql
+
+# SSL Certificates
+backend/certificates/
+
+# Node modules
+frontend-dashboard/node_modules/
+
+# Build output
+frontend-dashboard/dist/
+
+# Dependency directories
+node_modules/
+
+# Test output
+*.coverage
+coverage/
+
+# Docker
+*.pid
+docker-compose.override.yml
+
+# Misc
+*.bak
+*.swp
+*.swo
+
+# Ignore screenshots
+/docs/screenshots/
+
+# Ignore generated scripts
+scripts/*.pyc
+scripts/*.pyo
+scripts/__pycache__/
+
+# Ignore Python cache in backend/app
+backend/app/__pycache__/
+backend/app/*/__pycache__/
+
+# Ignore frontend build artifacts
+frontend-dashboard/.env
+frontend-dashboard/.env.*
+
+# Ignore test cache
+.pytest_cache/
+
+# Ignore editor config
+.idea/
+*.iml
+
+# Ignore coverage reports
+htmlcov/
+
+# Ignore backup files
+*~
+
+# Ignore database backups
+*.bak
+
+# Ignore pip wheel files
+*.whl
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore lock files
+Pipfile.lock
+yarn.lock
+package-lock.json
+
+# Ignore environment files
+.env.*
+.envrc
+
+# Ignore compiled files
+*.so
+*.dll
+*.dylib
+
+# Ignore documentation build
+/docs/_build/
