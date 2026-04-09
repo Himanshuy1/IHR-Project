@@ -5,7 +5,8 @@ import Dashboard from './pages/Dashboard';
 import Incidents from './pages/Incidents';
 import IncidentDetail from './pages/IncidentDetail';
 import Logs from './pages/Logs';
-import './index.css'; 
+import Map from './pages/Map';
+import './index.css';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/incidents" element={<Incidents />} />
           <Route path="/incidents/:id" element={<IncidentDetail />} />
           <Route path="/logs" element={<Logs />} />
+          <Route path="/map" element={<Map />} />
         </Routes>
       </DashboardLayout>
     </Router>

@@ -1,16 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Filter, ShieldAlert, Eye, Target, MoreHorizontal, AlertTriangle, Bug } from 'lucide-react';
 import { Card } from '../components/common/Card';
 import { Badge } from '../components/common/Badge';
+import { fetchIncidents } from '../services/api';
 
-// Mock Data representing the screenshot
-const initialIncidents = [
-  { id: '123245', type: 'Suspicious File Download', affects: 'Endpoint1', assignee: null, status: 'Open', time: '28/04/23 [00:23]', severity: 'High' },
-  { id: '125673', type: 'Suspicious File Download', affects: 'Endpoint97', assignee: 'jmarknin', status: 'In progress', time: '28/04/23 [20:45]', severity: 'High' },
-  { id: '123246', type: 'Multiple Failed Logins', affects: 'Server-DB01', assignee: null, status: 'Open', time: '28/04/23 [00:30]', severity: 'High' },
-  { id: '125674', type: 'Suspicious File Download', affects: 'Endpoint97', assignee: 'jmarknin', status: 'In progress', time: '28/04/23 [20:50]', severity: 'High' },
-  { id: '110022', type: 'Malware Detected', affects: 'Laptop-094', assignee: 'asharma', status: 'Resolved', time: '27/04/23 [14:20]', severity: 'Medium' },
-];
 
 const getTypeIcon = (type) => {
   if (type.includes('File')) return <Target className="w-4 h-4 text-orange-500" />;
@@ -19,8 +12,18 @@ const getTypeIcon = (type) => {
 };
 
 const Incidents = () => {
-  const [incidents] = useState(initialIncidents);
+  const [incidents, setIncidents] = useState([]);
   const [selectedRows, setSelectedRows] = useState(new Set());
+
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await fetchIncidents();
+      setIncidents(data);
+    };
+    loadData();
+    const interval = setInterval(loadData, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const toggleRow = (id) => {
     const newSet = new Set(selectedRows);

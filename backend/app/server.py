@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.middleware.request_interceptor import RequestInterceptorMiddleware
 from app.routes.api_route import router as api_router
+from app.routes.network_activity_route import router as network_activity_router
 from database.db_connection import init_db
 
 app = FastAPI(title="SecureShieldAI Honeypot")
@@ -24,6 +25,7 @@ def startup_event():
 
 app.add_middleware(RequestInterceptorMiddleware)
 app.include_router(api_router)
+app.include_router(network_activity_router)
 
 FAKE_PAGES_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../fake-webpages"))
 

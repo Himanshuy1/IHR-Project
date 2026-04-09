@@ -7,15 +7,8 @@ from app.honeypot_ssh import start_ssh_honeypot
 from app.honeypot_ftp import start_ftp_honeypot
 
 def run_fastapi():
-    cert_path = "certificates/cert.pem"
-    key_path = "certificates/key.pem"
-    
-    if os.path.exists(cert_path) and os.path.exists(key_path):
-        print("[*] Starting HTTPS HTTP Honeypot Server on port 443...")
-        uvicorn.run("app.server:app", host="0.0.0.0", port=443, ssl_keyfile=key_path, ssl_certfile=cert_path)
-    else:
-        print("[*] Certificates not found. Starting HTTP server on port 8000...")
-        uvicorn.run("app.server:app", host="0.0.0.0", port=8000)
+    print("[*] Starting HTTP server on port 8000...")
+    uvicorn.run("app.server:app", host="0.0.0.0", port=8000)
 
 if __name__ == "__main__":
     print("Starting SecureShieldAI Honeypot System...")

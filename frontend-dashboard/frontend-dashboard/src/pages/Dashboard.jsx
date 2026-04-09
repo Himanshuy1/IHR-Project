@@ -1,27 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldAlert, Activity, Users, Server, Maximize2, ServerCrash, AlertTriangle, ArrowUpRight } from 'lucide-react';
+import { ShieldAlert, Activity, Users, Server, Maximize2, ServerCrash, AlertTriangle, ArrowUpRight, Shield } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '../components/common/Card';
 import { Badge } from '../components/common/Badge';
 import { fetchLogs, fetchStats } from '../services/api';
 // Normally we would use Recharts here for the visual charts
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
-const mockNetworkData = [
-  { name: 'Mon', requests: 4000, transfers: 2400, app: 2400 },
-  { name: 'Tue', requests: 3000, transfers: 1398, app: 2210 },
-  { name: 'Wed', requests: 2000, transfers: 9800, app: 2290 },
-  { name: 'Thu', requests: 2780, transfers: 3908, app: 2000 },
-  { name: 'Fri', requests: 1890, transfers: 4800, app: 2181 },
-  { name: 'Sat', requests: 2390, transfers: 3800, app: 2500 },
-  { name: 'Sun', requests: 3490, transfers: 4300, app: 2100 },
-];
-
-const mockPieData = [
-  { name: 'Laptop-001', value: 400 },
-  { name: 'CloudInstance03', value: 300 },
-  { name: 'En.Workstation01', value: 300 },
-  { name: 'Laptop-094', value: 200 },
-];
 const COLORS = ['#6366f1', '#ef4444', '#f97316', '#3b82f6'];
 
 const Dashboard = () => {
@@ -44,9 +28,17 @@ const Dashboard = () => {
     <div className="flex flex-col gap-6 max-w-7xl mx-auto pb-10">
       
       {/* Top Banner Context */}
+      <div className="mb-2 flex items-center gap-3">
+        <div className="p-1.5 bg-emerald-500/10 rounded-md border border-emerald-500/20 shadow-[0_0_10px_rgba(52,211,153,0.2)]">
+          <Shield className="text-emerald-400 w-6 h-6 drop-shadow-[0_0_5px_rgba(52,211,153,0.8)]" />
+        </div>
+        <h1 className="text-2xl md:text-3xl font-extrabold tracking-widest bg-gradient-to-r from-emerald-400 to-cyan-500 text-transparent bg-clip-text drop-shadow-md pb-1 uppercase">
+          SecureShield<span className="font-mono text-emerald-400/80 text-xl md:text-2xl ml-1">AI</span>
+        </h1>
+      </div>
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-textMain">Overview</h1>
+          <h2 className="text-2xl font-bold tracking-tight text-textMain">Overview</h2>
           <p className="text-textMuted text-sm mt-1">Real-time threat monitoring and incident response.</p>
         </div>
         <div className="flex gap-3">
@@ -64,18 +56,18 @@ const Dashboard = () => {
             Open Incidents
           </CardHeader>
           <CardContent className="pt-0">
-            <div className="text-6xl font-bold text-textMain mb-6">8</div>
+            <div className="text-6xl font-bold text-textMain mb-6">{(stats?.severity_counts?.High || 0) + (stats?.severity_counts?.Medium || 0) + (stats?.severity_counts?.Low || 0)}</div>
             <div className="grid grid-cols-3 gap-4 border-t border-border/50 pt-4">
               <div>
-                <div className="text-lg font-bold text-red-500">4</div>
+                <div className="text-lg font-bold text-red-500">{stats?.severity_counts?.High || 0}</div>
                 <div className="text-xs text-textMuted uppercase font-semibold tracking-wider">High</div>
               </div>
               <div>
-                <div className="text-lg font-bold text-orange-400">3</div>
+                <div className="text-lg font-bold text-orange-400">{stats?.severity_counts?.Medium || 0}</div>
                 <div className="text-xs text-textMuted uppercase font-semibold tracking-wider">Medium</div>
               </div>
               <div>
-                <div className="text-lg font-bold text-blue-400">1</div>
+                <div className="text-lg font-bold text-blue-400">{stats?.severity_counts?.Low || 0}</div>
                 <div className="text-xs text-textMuted uppercase font-semibold tracking-wider">Low</div>
               </div>
             </div>
@@ -103,12 +95,7 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/30">
-                  {[
-                    { issue: 'Misconfigured access controls', desc: 'Conduct a full security audit', sev: 'High' },
-                    { issue: 'Malicious insider activity', desc: 'Implement user behavior monitoring', sev: 'High' },
-                    { issue: 'Weak vendor security practices', desc: 'Add multi-factor authentication for vendor access', sev: 'Medium' },
-                    { issue: 'Unsecured Wi-Fi connections', desc: 'Implement mobile device management software', sev: 'Low' },
-                  ].map((risk, i) => (
+                  {(stats?.risks_assessment || []).map((risk, i) => (
                     <tr key={i} className="hover:bg-surface/50 transition-colors group cursor-pointer">
                       <td className="py-3 items-center gap-2 text-gray-200">
                         <AlertTriangle className="w-4 h-4 inline mr-2 text-orange-500/70" />
@@ -137,7 +124,7 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent className="pt-0 h-[260px] relative">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={mockNetworkData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+              <LineChart data={stats?.network_activity || []} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <XAxis dataKey="name" stroke="#4b5563" fontSize={12} tickLine={false} axisLine={false} />
                 <YAxis stroke="#4b5563" fontSize={12} tickLine={false} axisLine={false} />
                 <Tooltip 
@@ -165,7 +152,7 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent className="pt-0 h-[260px] flex items-center">
              <div className="w-1/2 h-full flex flex-col justify-center gap-3">
-                {mockPieData.map((entry, index) => (
+                {(stats?.vulnerable_endpoints || []).map((entry, index) => (
                   <div key={`legend-${index}`} className="flex items-center justify-between text-sm group cursor-pointer">
                     <span className="flex items-center gap-2 text-textMuted group-hover:text-white transition-colors">
                       <div className="w-2 h-2 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }}></div>
@@ -178,8 +165,8 @@ const Dashboard = () => {
             <div className="w-1/2 h-full relative">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
-                  <Pie data={mockPieData} innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value" stroke="none">
-                    {mockPieData.map((entry, index) => (
+                  <Pie data={stats?.vulnerable_endpoints || []} innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value" stroke="none">
+                    {(stats?.vulnerable_endpoints || []).map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
@@ -187,7 +174,7 @@ const Dashboard = () => {
                 </PieChart>
               </ResponsiveContainer>
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                 <span className="text-3xl font-bold text-white">23</span>
+                 <span className="text-3xl font-bold text-white">{(stats?.vulnerable_endpoints || []).reduce((a, b) => a + b.value, 0)}</span>
                  <span className="text-xs text-textMuted uppercase tracking-wider">Total</span>
               </div>
             </div>

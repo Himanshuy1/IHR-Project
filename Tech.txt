@@ -1,0 +1,31 @@
+# SecureShieldAI - Technology Stack & Architecture
+
+This document outlines the primary technologies and libraries utilized to build and orchestrate the SecureShieldAI Honeypot framework, along with their distinct roles in the system.
+
+## 1. Backend (Honeypot Infrastructure & API)
+The backend is built primarily to capture, simulate, and log unauthorized access attempts while securely serving data to the frontend system.
+
+- **Python**: Core programming language used due to its extensive networking capabilities and ecosystem for security tools.
+- **FastAPI**: A high-performance, asynchronous Python web framework used to build the REST API. It handles incoming requests from the dashboard and securely serves log/incident data.
+- **Uvicorn**: An ASGI web server implementation used to run the FastAPI application.
+- **Paramiko**: A Python implementation of the SSHv2 protocol. Here, it is used to programmatically simulate a fake SSH server (SSH honeypot) that accepts or rejects connections and logs credential attempts.
+- **pyftpdlib**: A high-level library for writing asynchronous FTP servers in Python. Used to create the FTP honeypot that logs raw payload data and FTP commands submitted by attackers.
+- **Multiprocessing (Python built-in)**: Utilized in `run.py` to concurrently launch and manage the blocking socket servers (FastAPI, SSH, FTP) within the same core execution thread.
+- **Twilio**: Cloud communications API used to send immediate real-time SMS or WhatsApp alerts to administrators when a high-severity breach attempt is recognized.
+- **python-dotenv**: Utility library to load sensitive credentials and configurations (like Twilio tokens, keys) from `.env` files securely without hardcoding them into the repository.
+- **Requests**: Standard Python library utilized to make outbound calls (e.g., webhook triggers or threat intelligence API lookups based on attacker IPs).
+
+## 2. Frontend (Real-Time Intelligence Dashboard)
+The visualization layer is an interactive, glassmorphic UI built to represent the incoming threat data aesthetically and efficiently.
+
+- **React.js**: Core User Interface library used to build the single-page application (SPA) dashboard.
+- **Vite**: Next-generation build tool and development server running the React application. Used for its extremely fast Hot Module Replacement (HMR) and optimized build outputs.
+- **Tailwind CSS**: A utility-first CSS framework implemented to quickly scaffold the aesthetic design, animations, dark mode, and responsive traits of the dashboard.
+- **react-simple-maps**: Combined with D3-geo, this library renders scalable global maps and dynamic projection systems. It visually plots the real-time geographic origins (lat/long) of incoming attacks on the dashboard's Map view.
+- **Recharts**: A composable charting library built on React components. Used to render clean, interactive data visualizations (like attack frequency line charts and protocol distribution graphs).
+- **Zustand**: A small, fast, and scalable bearbones state-management solution used to efficiently share log streams and configuration states across the dashboard components.
+- **Axios**: Promise-based HTTP client implemented to reliably fetch live log streams, incidents, and threat metrics from the FastAPI backend.
+- **Lucide-react**: An open-source icon set utilized to provide consistent, modern SVG typography and system icons throughout the UI panels and sidebar.
+
+## 3. Infrastructure & Deployment Tools
+- **Docker / Docker Compose**: Used for robust containerization of the backend APIs and honeypot servers. It creates isolated environments ensuring the actual host machine remains entirely uncompromised when attackers hit the bound honeypot ports.

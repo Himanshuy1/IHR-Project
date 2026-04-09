@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from './Card'; // reuse utility
+import { cn } from '../../utils/cn'; // reuse utility
 
 export const Badge = ({ children, variant = 'default', className, ...props }) => {
   const variants = {
