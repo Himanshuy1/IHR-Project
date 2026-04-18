@@ -7,7 +7,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
         <ShieldAlert color="#00ffcc" size={28} />
-        <h1>SecureShieldAI</h1>
+        <h1>SecureShield</h1>
       </div>
       <div className="nav-links">
         <NavLink to="/" end>Dashboard</NavLink>

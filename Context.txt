@@ -1,9 +1,9 @@
-Project: SecureShieldAI
+Project: SecureShield
 ======================
 
 Overview:
 ---------
-SecureShieldAI is a security-focused project designed to simulate and monitor attacks using honeypots, log and analyze suspicious activities, and provide a dashboard for administrators. The project is organized into backend and frontend components, with supporting scripts, documentation, and configuration files.
+SecureShield is a security-focused project designed to simulate and monitor attacks using honeypots, log and analyze suspicious activities, and provide a dashboard for administrators. The project is organized into backend and frontend components, with supporting scripts, documentation, and configuration files.
 
 Main Components:
 ----------------
@@ -104,4 +104,4 @@ Repository Structure (Summary):
 - docker-compose.yml, backend/Dockerfile # Deployment
 - .gitignore, README.md, Context.txt      # Project info and config
 
-This file provides a high-level context and operational overview for SecureShieldAI. For more details, see the README.md and code comments.
+This file provides a high-level context and operational overview for SecureShield. For more details, see the README.md and code comments.

@@ -11,7 +11,7 @@ def run_fastapi():
     uvicorn.run("app.server:app", host="0.0.0.0", port=8000)
 
 if __name__ == "__main__":
-    print("Starting SecureShieldAI Honeypot System...")
+    print("Starting SecureShield Honeypot System...")
     
     # We use multiprocessing to run these blocking servers concurrently
     p_fastapi = multiprocessing.Process(target=run_fastapi)

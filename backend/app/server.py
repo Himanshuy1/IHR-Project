@@ -8,7 +8,7 @@ from app.routes.api_route import router as api_router
 from app.routes.network_activity_route import router as network_activity_router
 from database.db_connection import init_db
 
-app = FastAPI(title="SecureShieldAI Honeypot")
+app = FastAPI(title="SecureShield Honeypot")
 
 # Enable CORS for the frontend dashboard
 app.add_middleware(

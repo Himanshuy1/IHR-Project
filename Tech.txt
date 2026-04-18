@@ -1,6 +1,6 @@
-# SecureShieldAI - Technology Stack & Architecture
+# SecureShield - Technology Stack & Architecture
 
-This document outlines the primary technologies and libraries utilized to build and orchestrate the SecureShieldAI Honeypot framework, along with their distinct roles in the system.
+This document outlines the primary technologies and libraries utilized to build and orchestrate the SecureShield Honeypot framework, along with their distinct roles in the system.
 
 ## 1. Backend (Honeypot Infrastructure & API)
 The backend is built primarily to capture, simulate, and log unauthorized access attempts while securely serving data to the frontend system.
