@@ -20,20 +20,20 @@ const Dashboard = () => {
       setStats(s);
     };
     loadData();
-    const interval = setInterval(loadData, 10000); 
+    const interval = setInterval(loadData, 10000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="flex flex-col gap-6 max-w-7xl mx-auto pb-10">
-      
+
       {/* Top Banner Context */}
       <div className="mb-2 flex items-center gap-3">
         <div className="p-1.5 bg-emerald-500/10 rounded-md border border-emerald-500/20 shadow-[0_0_10px_rgba(52,211,153,0.2)]">
           <Shield className="text-emerald-400 w-6 h-6 drop-shadow-[0_0_5px_rgba(52,211,153,0.8)]" />
         </div>
         <h1 className="text-2xl md:text-3xl font-extrabold tracking-widest bg-gradient-to-r from-emerald-400 to-cyan-500 text-transparent bg-clip-text drop-shadow-md pb-1 uppercase">
-          SecureShield<span className="font-mono text-emerald-400/80 text-xl md:text-2xl ml-1">AI</span>
+          SecureShield<span className="font-mono text-emerald-400/80 text-xl md:text-2xl ml-1"></span>
         </h1>
       </div>
       <div className="flex items-center justify-between">
@@ -116,7 +116,7 @@ const Dashboard = () => {
 
       {/* Row 2: Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
+
         {/* Network Activity */}
         <Card>
           <CardHeader action={<Maximize2 className="w-4 h-4 text-textMuted cursor-pointer hover:text-white" />}>
@@ -127,7 +127,7 @@ const Dashboard = () => {
               <LineChart data={stats?.network_activity || []} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <XAxis dataKey="name" stroke="#4b5563" fontSize={12} tickLine={false} axisLine={false} />
                 <YAxis stroke="#4b5563" fontSize={12} tickLine={false} axisLine={false} />
-                <Tooltip 
+                <Tooltip
                   contentStyle={{ backgroundColor: '#1f2028', border: '1px solid #2e303a', borderRadius: '8px' }}
                   itemStyle={{ color: '#f3f4f6' }}
                 />
@@ -151,16 +151,16 @@ const Dashboard = () => {
             Vulnerable endpoints - Last 24h
           </CardHeader>
           <CardContent className="pt-0 h-[260px] flex items-center">
-             <div className="w-1/2 h-full flex flex-col justify-center gap-3">
-                {(stats?.vulnerable_endpoints || []).map((entry, index) => (
-                  <div key={`legend-${index}`} className="flex items-center justify-between text-sm group cursor-pointer">
-                    <span className="flex items-center gap-2 text-textMuted group-hover:text-white transition-colors">
-                      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }}></div>
-                      {entry.name}
-                    </span>
-                    <button className="opacity-0 group-hover:opacity-100 text-indigo-400 text-xs">Isolate</button>
-                  </div>
-                ))}
+            <div className="w-1/2 h-full flex flex-col justify-center gap-3">
+              {(stats?.vulnerable_endpoints || []).map((entry, index) => (
+                <div key={`legend-${index}`} className="flex items-center justify-between text-sm group cursor-pointer">
+                  <span className="flex items-center gap-2 text-textMuted group-hover:text-white transition-colors">
+                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }}></div>
+                    {entry.name}
+                  </span>
+                  <button className="opacity-0 group-hover:opacity-100 text-indigo-400 text-xs">Isolate</button>
+                </div>
+              ))}
             </div>
             <div className="w-1/2 h-full relative">
               <ResponsiveContainer width="100%" height="100%">
@@ -174,8 +174,8 @@ const Dashboard = () => {
                 </PieChart>
               </ResponsiveContainer>
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                 <span className="text-3xl font-bold text-white">{(stats?.vulnerable_endpoints || []).reduce((a, b) => a + b.value, 0)}</span>
-                 <span className="text-xs text-textMuted uppercase tracking-wider">Total</span>
+                <span className="text-3xl font-bold text-white">{(stats?.vulnerable_endpoints || []).reduce((a, b) => a + b.value, 0)}</span>
+                <span className="text-xs text-textMuted uppercase tracking-wider">Total</span>
               </div>
             </div>
           </CardContent>
