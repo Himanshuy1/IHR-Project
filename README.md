@@ -125,6 +125,4 @@ Configure your credentials in the `.env` file within the `backend/` directory:
 Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ---
-<div align="center">
-  Developed with ❤️ for the Cybersecurity Community
-</div>
+
